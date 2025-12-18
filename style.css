@@ -1,0 +1,127 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  margin:10px;
+  line-height: 1.6;
+}
+
+//スクロールバー
+html {
+  scrollbar-color: deepskyblue powderblue;
+}
+
+//タイプ判定テスト
+h1 {
+	color: white;
+	background-color:#9999FF;
+}
+
+//判定結果
+h2 {
+	font-size: 30px;
+    margin-top: 5px;
+	background-color:#9999FF;
+}
+
+//選択リストの説明書
+h4 {
+  text-align: center;
+ }
+ 
+/*タイトル画像
+.title-img img {
+	width: 100px;
+	height: auto;
+}*/
+
+.title-box {
+	border-radius: 30px;
+	width: 300px;
+	padding: 5px;
+	margin: 10px auto;
+	text-align: center;
+	background: #FF9999;
+}
+
+
+.question {
+  background: #FFFFCC;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-left: 5px solid #666;
+}
+
+.select-row {
+  margin: 8px 0;
+}
+
+.select {
+	padding: 3px;
+	font-size: 14px;
+}
+
+.zokusei {
+	background-color: #F0FFF0;
+}
+
+.score-table {
+	border-collapse: separate;
+	border-radius: 10px;
+	border:1px solid black;
+	overflow:hidden;
+	width: 100px;
+	text-align: center;
+	margin: 0 auto;
+	
+}
+
+.score-table th,
+.score-table td {
+	border: 1px solid black;
+}
+
+#resultType {
+	font-size: 30px;
+    margin-top: 5px;
+	background-color:#FF9999;
+}
+
+#resultImages {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.result-card {
+    text-align: center;
+    width: 180px; 
+}
+
+.result-img {
+    width: 150px;
+    height: auto;
+}
+
+.result-desc {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.select-row.unanswered {
+  border: 2px solid #ff4d4d;
+  background-color: #fff0f0;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.select-row.unanswered::after {
+  content: "※ここを選択してください";
+  color: #ff0000;
+  font-size: 0.9em;
+  margin-left: 8px;
+}
