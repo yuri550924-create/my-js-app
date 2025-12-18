@@ -165,10 +165,10 @@ function calculate() {
 	
 	// 画像＋説明文の表示 ----------
   const imageMap = {
-    V: "かわいい目.png",
-    A: "かわいい耳.png",
-    K: "かわいい手.png",
-    AD: "かわいい口.png",
+    V: "images/かわいい目.png",
+    A: "images/かわいい耳.png",
+    K: "images/かわいい手.png",
+    AD: "images/かわいい口.png",
   };
 
   const descriptionMap = {
@@ -198,3 +198,4 @@ function calculate() {
     imageArea.appendChild(wrapper);
   });
 }
+
