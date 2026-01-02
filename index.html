@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-	
+<div id="messageArea" class="message fixed"></div>
+
 <h1>タイプ判定テスト</h1>
 
 <h3><img src = "images/水彩ちょうちょ.webp" width ="100px"></div>以下の質問に対する設問ごとに、あてはまる数字を選択しましょう。<img src = "images/水彩花.webp" width ="100px"></h3>
@@ -22,12 +23,14 @@
 
 <div id="form-area"></div>
 
-<button onclick="calculate()" class ="pointer" >結果を表示</button>
+<button onclick="calculate()" class ="btn btn-submit pointer" >結果を表示</button>
+<button onclick="reset()" class ="btn btn-reset pointer" >リセット</button>
 
-
+<div id="resultArea">
 <h2>判定結果</h2>
 <div id="result"></div>
 <script src="script.js"></script>
 <div id="resultImages"></div>
+</div>
 </body>
 </html>
