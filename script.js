@@ -50,6 +50,9 @@ const groupMap = [
   ["A", "AD", "K", "V"]    // 設問5
 ];
 
+//最初の記入中はカーソル移動しない
+let autoMoveEnabled = false;
+
 // ▼ radioボタン生成
 function createSelect(name) {
   return `
@@ -84,13 +87,72 @@ function renderForm() {
     div.innerHTML = html;
     area.appendChild(div);
   });
+  //次の未入力箇所にカーソルを動かす
+  setupAutoMove();
 }
 renderForm();
+
+//次の未入力箇所にカーソルを動かす
+function setupAutoMove() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+
+  radios.forEach(radio => {
+    radio.addEventListener("change", () => {
+    showMessage("", ""); // ← メッセージ消去
+
+    // ★ ここで赤表示を解除
+  	const row = radio.closest(".select-row");
+  	row.classList.remove("unanswered");
+    // ★ フラグがONのときだけ動かす
+    if (autoMoveEnabled) {
+         const hasNext = moveToNextUnanswered();
+    if (!hasNext) {
+		showMessage("すべての項目が入力されました！", "success");
+	}
+
+    }
+  });
+  });
+}
+
+//アラートでなくメッセージ表示にする
+function showMessage(text, type = "error") {
+  const area = document.getElementById("messageArea");
+  area.textContent = text;
+  area.className = `message fixed ${type}`;
+  area.style.display = "block";
+}
+//メッセージ非表示にする
+function hideMessage() {
+  const area = document.getElementById("messageArea");
+  area.style.display = "none";
+}
+
+function moveToNextUnanswered() {
+  const rows = document.querySelectorAll(".select-row");
+
+  for (const row of rows) {
+    const radios = row.querySelectorAll('input[type="radio"]');
+    const checked = Array.from(radios).some(r => r.checked);
+
+    // 未入力のブロックを見つけたら
+    if (!checked) {
+      radios[0].focus();
+      radios[0].scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+      return true;  //←未入力がまだある
+    }
+  }
+  return false;  // ←すべて入力済み
+  }
 
 // ▼ 集計
 function calculate() {
  let hasUnanswered = false;
-
+ let firstUnansweredRadio = null;
+ 
   questions.forEach((q, qi) => {
     q.forEach((_, i) => {
       const name = `q${qi}-a${i}`;
@@ -106,12 +168,32 @@ function calculate() {
       if (!checked) {
         row.classList.add("unanswered");
         hasUnanswered = true;
+      if (!firstUnansweredRadio) {
+          firstUnansweredRadio = radios[0];
+        }
       }
     });
   });
 
   if (hasUnanswered) {
-    alert("未選択の項目があります。正しい結果を出すためにも、赤く表示された部分を選択してください。");
+	showMessage(
+  		"未選択の項目があります。赤く表示された部分を選択してください。",
+  		"error"
+	);
+
+    
+    // ★ ここで自動移動を有効化
+   autoMoveEnabled = true;
+
+    //未入力部分の最初にフォーカスする
+    firstUnansweredRadio.focus();
+
+    firstUnansweredRadio.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+  });
+
+  return;
   }
 
   const score = { V: 0, A: 0, K: 0, AD: 0 };
@@ -196,6 +278,40 @@ function calculate() {
     wrapper.appendChild(img);
     wrapper.appendChild(desc);
     imageArea.appendChild(wrapper);
+  });
+// ★ 判定結果エリアへスクロール（おすすめ位置）
+	document.getElementById("resultType").scrollIntoView({
+  	behavior: "smooth",
+  	block: "start"
+	});
+}
+
+//最初からボタンを押すと入力がリセットされる
+function reset() {
+  // ① ラジオボタンのチェックをすべて外す
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.checked = false;
+  });
+
+  // ② 赤表示（未入力）をすべて解除
+  document.querySelectorAll(".select-row").forEach(row => {
+    row.classList.remove("unanswered");
+  });
+
+  // ③ 結果表示をクリア
+  document.getElementById("result").innerHTML = "";
+  document.getElementById("resultImages").innerHTML = "";
+
+  // ④ メッセージを消す
+  hideMessage();
+
+  // ⑤ 自動カーソル移動をOFFに戻す
+  autoMoveEnabled = false;
+
+  // ⑥ ページ上部へ戻す（任意）
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 }
 
