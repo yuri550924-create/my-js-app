@@ -125,3 +125,60 @@ h4 {
   font-size: 0.9em;
   margin-left: 8px;
 }
+//メッセージ
+.message {
+  padding: 12px 16px;
+  margin: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  display: none;
+}
+
+.message.error {
+  background: #ffe0e0;
+  color: #b00020;
+}
+
+.message.success {
+  background: #e0ffe8;
+  color: #006b2e;
+}
+
+.message.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-submit {
+  background-color: #3498db;
+}
+
+.btn-submit:hover {
+  background-color: #2980b9;
+}
+
+.btn-reset {
+  background-color: #FF9999;
+}
+
+.btn-reset:hover {
+  background-color: #c0392b;
+}
+
+#resultType {
+  scroll-margin-top: 80px; /* 上に余白 */
+}
+
