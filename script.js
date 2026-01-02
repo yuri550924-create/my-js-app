@@ -279,10 +279,14 @@ function calculate() {
     wrapper.appendChild(desc);
     imageArea.appendChild(wrapper);
   });
+
+// ★ 判定結果エリアを表示（②）
+	document.getElementById("resultArea").style.display = "flex";
+	
 // ★ 判定結果エリアへスクロール（おすすめ位置）
 	document.getElementById("resultType").scrollIntoView({
   	behavior: "smooth",
-  	block: "start"
+  	block: "center"
 	});
 }
 
