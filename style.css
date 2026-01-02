@@ -182,3 +182,9 @@ h4 {
   scroll-margin-top: 80px; /* 上に余白 */
 }
 
+input[type="radio"] {
+  transform: scale(1.8);
+  margin: 0 6px;
+  cursor: pointer;
+}
+
