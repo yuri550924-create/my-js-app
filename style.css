@@ -182,6 +182,12 @@ h4 {
   scroll-margin-top: 80px; /* 上に余白 */
 }
 
+#resultArea {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
 input[type="radio"] {
   transform: scale(1.8);
   margin: 0 6px;
